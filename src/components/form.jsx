@@ -15,7 +15,7 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
     // console.log({ edit });
 
     if (Object.keys(edit).length === 0) {
-      setTodo([...todo, { title: input, id: ID(), completed: true }]);
+      setTodo([...todo, { title: input, id: ID(), completed: false }]);
       setInput("");
     } else {
       updateTodo(input, edit.id, edit.completed);
@@ -41,7 +41,7 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
           width: "300px",
           display: "flex",
           justifyContent: "space-between",
-          marginBottom: "10px",
+          marginBottom: "50px",
         }}
       >
         <input

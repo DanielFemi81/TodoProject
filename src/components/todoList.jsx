@@ -69,6 +69,7 @@ const TodoList = ({ todo, setTodo, setEdit }) => {
               type="checkbox"
               checked={todos.completed}
               onClick={() => clickedTodo(todos)}
+              style={{ cursor: "pointer" }}
             />
           </li>
         );
