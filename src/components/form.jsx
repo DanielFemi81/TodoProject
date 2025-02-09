@@ -55,6 +55,7 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
             padding: "8px",
             border: "none",
             borderBottom: "1px solid black",
+            borderRadius: "0px",
           }}
         />
         <button
