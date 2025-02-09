@@ -61,8 +61,10 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
           type="submit"
           style={{
             borderRadius: "5px",
-            backgroundColor: "transparent",
+            backgroundColor: "blue",
+            color: "white",
             cursor: "pointer",
+            border: "none",
           }}
         >
           {edit ? "OK" : "Add"}
