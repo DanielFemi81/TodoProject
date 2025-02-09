@@ -1,4 +1,4 @@
-import TodoProject from "./components/todoProject";
+import TodoProject from "./todoProject";
 
 function App() {
   return (
