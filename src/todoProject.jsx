@@ -29,25 +29,31 @@ const TodoProject = () => {
         fontSize: "20px",
       }}
     >
-      <Header />
-      <Form
-        input={input}
-        setInput={setInput}
-        todo={todo}
-        setTodo={setTodo}
-        edit={edit}
-        setEdit={setEdit}
-        data={data}
-        setData={setData}
-      />
-      <TodoList
-        input={input}
-        setInput={setInput}
-        todo={todo}
-        setTodo={setTodo}
-        edit={edit}
-        setEdit={setEdit}
-      />
+      {todo.length == 0 ? (
+        <p>Loading</p>
+      ) : (
+        <>
+          <Header />
+          <Form
+            input={input}
+            setInput={setInput}
+            todo={todo}
+            setTodo={setTodo}
+            edit={edit}
+            setEdit={setEdit}
+            data={data}
+            setData={setData}
+          />{" "}
+          <TodoList
+            input={input}
+            setInput={setInput}
+            todo={todo}
+            setTodo={setTodo}
+            edit={edit}
+            setEdit={setEdit}
+          />
+        </>
+      )}
     </div>
   );
 };

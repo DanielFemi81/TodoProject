@@ -1,12 +1,14 @@
 import React from "react";
+import { toast } from "sonner";
 
 const TodoList = ({ todo, setTodo, setEdit }) => {
-  const deleteBtn = ({ id }) => {
+  const deleteBtn = ({ id, title }) => {
     setTodo(
       todo.filter((rmTodos) => {
         return rmTodos.id !== id;
       })
     );
+    toast(`${title} is removed`);
   };
   const editBtn = (value) => {
     setEdit(value);
@@ -22,6 +24,9 @@ const TodoList = ({ todo, setTodo, setEdit }) => {
         return list;
       })
     );
+    if (!todos.completed) {
+      toast.success(`${todos.title} is completed`);
+    }
   };
   console.table(todo);
 
