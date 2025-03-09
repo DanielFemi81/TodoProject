@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "sonner";
+import { GlobalState } from "../todoProject";
 
-const TodoList = ({ todo, setTodo, setEdit }) => {
+const TodoList = () => {
+  const { todo, setTodo, setEdit } = useContext(GlobalState);
   const deleteBtn = ({ id, title }) => {
     setTodo(
       todo.filter((rmTodos) => {
@@ -28,7 +30,7 @@ const TodoList = ({ todo, setTodo, setEdit }) => {
       toast.success(`${todos.title} is completed`);
     }
   };
-  console.table(todo);
+  //   console.table(todo);
 
   return (
     <>
@@ -73,7 +75,8 @@ const TodoList = ({ todo, setTodo, setEdit }) => {
             <input
               type="checkbox"
               checked={todos.completed}
-              onClick={() => clickedTodo(todos)}
+              //   onChange={(e) => clickedTodo(e.target.checked)}
+              onChange={() => clickedTodo(todos)}
               style={{ cursor: "pointer" }}
             />
           </li>

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Form from "./components/form";
 import Header from "./components/header";
 import TodoList from "./components/todoList";
 import axios from "axios";
 
+export const GlobalState = createContext(null);
 const TodoProject = () => {
   const url = "https://jsonplaceholder.typicode.com/todos";
   const [input, setInput] = useState("");
@@ -14,7 +15,6 @@ const TodoProject = () => {
   useEffect(() => {
     axios.get(url).then((res) => setTodo(res.data));
   }, []);
-  // console.table(data);
   return (
     <div
       style={{
@@ -29,31 +29,19 @@ const TodoProject = () => {
         fontSize: "20px",
       }}
     >
-      {todo.length == 0 ? (
-        <p>Loading</p>
-      ) : (
-        <>
-          <Header />
-          <Form
-            input={input}
-            setInput={setInput}
-            todo={todo}
-            setTodo={setTodo}
-            edit={edit}
-            setEdit={setEdit}
-            data={data}
-            setData={setData}
-          />{" "}
-          <TodoList
-            input={input}
-            setInput={setInput}
-            todo={todo}
-            setTodo={setTodo}
-            edit={edit}
-            setEdit={setEdit}
-          />
-        </>
-      )}
+      <GlobalState.Provider
+        value={{ input, setInput, todo, setTodo, edit, setEdit, data, setData }}
+      >
+        {todo.length == 0 ? (
+          <p>Loading</p>
+        ) : (
+          <>
+            <Header />
+            <Form />
+            <TodoList />
+          </>
+        )}
+      </GlobalState.Provider>
     </div>
   );
 };

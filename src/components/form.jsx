@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { v4 as ID } from "uuid";
+import { GlobalState } from "../todoProject";
 
-const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
+const Form = () => {
+  const { input, setInput, todo, setTodo, edit, setEdit } =
+    useContext(GlobalState);
   const updateTodo = (title, id, completed) => {
     const newTodo = todo.map((todos) => {
       return todos.id === id ? { title, id, completed } : todos;
@@ -9,10 +12,9 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
     setTodo(newTodo);
     setEdit("");
   };
+
   const onFormSubmit = (e) => {
     e.preventDefault();
-
-    // console.log({ edit });
 
     if (Object.keys(edit).length === 0) {
       setTodo([...todo, { title: input, id: ID(), completed: false }]);
@@ -26,7 +28,7 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
   };
 
   useEffect(() => {
-    if (edit) {
+    if (edit.title) {
       setInput(edit.title);
     } else {
       setInput("");
@@ -44,10 +46,13 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
           marginBottom: "50px",
         }}
       >
+        {console.log(input)}
+
         <input
           type="text"
           value={input}
           onChange={onInputChange}
+          //   onChange={(e) => setInput(e.target.value)}
           placeholder="input task for the day..."
           required
           style={{
@@ -58,6 +63,7 @@ const Form = ({ input, setInput, todo, setTodo, edit, setEdit }) => {
             borderRadius: "0px",
           }}
         />
+
         <button
           type="submit"
           style={{
